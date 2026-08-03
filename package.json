@@ -1,0 +1,13 @@
+{
+  "name": "minnekhada-facilities",
+  "version": "1.0.0",
+  "description": "Minnekhada Facilities Consulting Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve -l 8080",
+    "start": "npx serve -l 8080"
+  },
+  "keywords": ["facilities", "janitorial", "paving", "duct-cleaning", "google-calendar"],
+  "author": "Minnekhada Facilities Consulting",
+  "license": "ISC"
+}
