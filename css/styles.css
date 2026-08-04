@@ -1477,3 +1477,20 @@ footer {
   }
 }
 
+/* Paving Services Grid Symmetrical Styles */
+.paving-services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 960px;
+  margin: 2rem auto 0;
+}
+
+@media (max-width: 768px) {
+  .paving-services-grid {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin-top: 1.5rem;
+  }
+}
+
