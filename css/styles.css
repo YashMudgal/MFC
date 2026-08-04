@@ -1347,3 +1347,133 @@ footer {
     justify-content: flex-start;
   }
 }
+
+/* Cleaning Services Carousel Styles */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
+  overflow: visible; /* Allows glowing buttons to pop out nicely */
+}
+
+.carousel-viewport {
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  padding: 1rem 0;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.carousel-track .service-card {
+  flex: 0 0 calc(33.333% - 1.333rem); /* 3 cards on desktop */
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: -25px;
+  right: -25px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carousel-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  cursor: pointer;
+  pointer-events: auto;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.carousel-btn:hover {
+  background: var(--primary);
+  color: #FFFFFF;
+  border-color: var(--primary);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.carousel-btn:active {
+  transform: scale(0.95);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.25;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.carousel-progress-container {
+  width: 200px;
+  height: 4px;
+  background: var(--border-color);
+  margin: 2rem auto 0;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--accent);
+  border-radius: var(--radius-full);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-origin: left center;
+}
+
+/* Responsiveness for Carousel */
+@media (max-width: 1024px) {
+  .carousel-track .service-card {
+    flex: 0 0 calc(50% - 1rem); /* 2 cards on tablet */
+  }
+  .carousel-controls {
+    left: -10px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-viewport {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel-track {
+    gap: 1.5rem;
+    transition: none; /* Let native touch scrolling behave naturally */
+  }
+  .carousel-track .service-card {
+    flex: 0 0 calc(100% - 2rem); /* 1 card showing mostly, with slight edge of next */
+    scroll-snap-align: center;
+  }
+  .carousel-controls {
+    display: none; /* Use touch swipe instead of buttons */
+  }
+}
+

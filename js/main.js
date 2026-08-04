@@ -138,4 +138,81 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Cleaning Services Carousel Logic
+  const carousel = document.getElementById('cleaningCarousel');
+  const track = document.getElementById('carouselTrack');
+  const prevBtn = document.getElementById('carouselPrevBtn');
+  const nextBtn = document.getElementById('carouselNextBtn');
+  const progressBar = document.getElementById('carouselProgressBar');
+  const viewport = document.getElementById('carouselViewport');
+
+  if (carousel && track && prevBtn && nextBtn && progressBar && viewport) {
+    let currentIndex = 0;
+    const totalCards = track.children.length;
+
+    function getCardsPerView() {
+      if (window.innerWidth <= 768) return 1;
+      if (window.innerWidth <= 1024) return 2;
+      return 3;
+    }
+
+    function getMaxIndex() {
+      return Math.max(0, totalCards - getCardsPerView());
+    }
+
+    function updateCarousel() {
+      const maxIndex = getMaxIndex();
+      if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
+      }
+      
+      const cardsPerView = getCardsPerView();
+      if (window.innerWidth > 768) {
+        const cardWidth = track.children[0].getBoundingClientRect().width;
+        const gap = 32; // 2rem gap
+        const offset = currentIndex * (cardWidth + gap);
+        track.style.transform = `translateX(-${offset}px)`;
+      } else {
+        track.style.transform = 'none';
+      }
+
+      // Update buttons
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex >= maxIndex;
+
+      // Update progress bar scale
+      const progressFraction = maxIndex > 0 ? currentIndex / maxIndex : 0;
+      progressBar.style.transform = `scaleX(${0.2 + 0.8 * progressFraction})`;
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateCarousel();
+      }
+    });
+
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+
+    // Mobile native scroll update progress bar
+    viewport.addEventListener('scroll', () => {
+      if (window.innerWidth <= 768) {
+        const maxScroll = viewport.scrollWidth - viewport.clientWidth;
+        if (maxScroll > 0) {
+          const progressFraction = viewport.scrollLeft / maxScroll;
+          progressBar.style.transform = `scaleX(${0.2 + 0.8 * progressFraction})`;
+        }
+      }
+    });
+  }
 });
