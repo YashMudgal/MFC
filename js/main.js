@@ -150,6 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (carousel && track && prevBtn && nextBtn && progressBar && viewport) {
     let currentIndex = 0;
     const totalCards = track.children.length;
+    let autoRotateInterval;
 
     function getCardsPerView() {
       if (window.innerWidth <= 768) return 1;
@@ -177,32 +178,81 @@ document.addEventListener('DOMContentLoaded', () => {
         track.style.transform = 'none';
       }
 
-      // Update buttons
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex >= maxIndex;
+      // Update buttons (on desktop only, where navigation is visible)
+      if (window.innerWidth > 768) {
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= maxIndex;
+      }
 
       // Update progress bar scale
       const progressFraction = maxIndex > 0 ? currentIndex / maxIndex : 0;
       progressBar.style.transform = `scaleX(${0.2 + 0.8 * progressFraction})`;
     }
 
+    // Auto rotate controls
+    function startAutoRotate() {
+      if (autoRotateInterval) clearInterval(autoRotateInterval);
+      
+      autoRotateInterval = setInterval(() => {
+        const maxIndex = getMaxIndex();
+        if (maxIndex > 0) {
+          if (currentIndex < maxIndex) {
+            currentIndex++;
+          } else {
+            currentIndex = 0; // Wrap around to the start
+          }
+          updateCarousel();
+        }
+      }, 4000); // Rotates every 4 seconds
+    }
+
+    function stopAutoRotate() {
+      if (autoRotateInterval) {
+        clearInterval(autoRotateInterval);
+      }
+    }
+
+    // Manual click resets the interval timer
     nextBtn.addEventListener('click', () => {
       const maxIndex = getMaxIndex();
       if (currentIndex < maxIndex) {
         currentIndex++;
         updateCarousel();
+      } else {
+        currentIndex = 0;
+        updateCarousel();
       }
+      stopAutoRotate();
+      startAutoRotate();
     });
 
     prevBtn.addEventListener('click', () => {
       if (currentIndex > 0) {
         currentIndex--;
         updateCarousel();
+      } else {
+        currentIndex = getMaxIndex();
+        updateCarousel();
       }
+      stopAutoRotate();
+      startAutoRotate();
     });
 
-    window.addEventListener('resize', updateCarousel);
+    // Pause on hover
+    carousel.addEventListener('mouseenter', stopAutoRotate);
+    carousel.addEventListener('mouseleave', startAutoRotate);
+    carousel.addEventListener('touchstart', stopAutoRotate, { passive: true });
+    carousel.addEventListener('touchend', startAutoRotate, { passive: true });
+
+    window.addEventListener('resize', () => {
+      updateCarousel();
+      stopAutoRotate();
+      startAutoRotate();
+    });
+
+    // Initial setup
     updateCarousel();
+    startAutoRotate();
 
     // Mobile native scroll update progress bar
     viewport.addEventListener('scroll', () => {
