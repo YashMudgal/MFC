@@ -63,25 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Interactive Quote Form Logic
   const serviceSelectCards = document.querySelectorAll('.service-select-card');
-  const selectedServicesInput = document.getElementById('selectedServicesInput');
 
   if (serviceSelectCards.length > 0) {
-    const selectedServices = new Set();
-
     serviceSelectCards.forEach((card) => {
       card.addEventListener('click', () => {
-        const serviceName = card.getAttribute('data-service');
-        if (card.classList.contains('selected')) {
-          card.classList.remove('selected');
-          if (serviceName) selectedServices.delete(serviceName);
-        } else {
-          card.classList.add('selected');
-          if (serviceName) selectedServices.add(serviceName);
-        }
-
-        if (selectedServicesInput) {
-          selectedServicesInput.value = Array.from(selectedServices).join(', ');
-        }
+        card.classList.toggle('selected');
 
         updateQuoteEstimate();
       });
@@ -104,39 +90,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       estimateBadge.textContent = `$${baseEstimate} - $${Math.round(baseEstimate * 1.4)} (Estimated Range)`;
     }
-  }
-
-  // Quote Form Multi-Step Handler
-  const quoteForm = document.getElementById('interactiveQuoteForm');
-  if (quoteForm) {
-    quoteForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const feedbackBox = document.getElementById('quoteSuccessMessage');
-      if (feedbackBox) {
-        feedbackBox.style.display = 'block';
-        quoteForm.reset();
-        document.querySelectorAll('.service-select-card').forEach(c => c.classList.remove('selected'));
-        updateQuoteEstimate();
-        window.scrollTo({ top: feedbackBox.offsetTop - 100, behavior: 'smooth' });
-      } else {
-        alert('Thank you! Your quote request has been sent successfully. A Minnekhada consultant will reach out shortly.');
-      }
-    });
-  }
-
-  // General Contact Form Handler
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const alertBox = document.getElementById('contactSuccessMessage');
-      if (alertBox) {
-        alertBox.style.display = 'block';
-        contactForm.reset();
-      } else {
-        alert('Message sent successfully! We will get back to you within 24 hours.');
-      }
-    });
   }
 
   // Cleaning Services Carousel Logic
