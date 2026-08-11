@@ -37,9 +37,9 @@
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About Us</a>
         <a href="services.html" class="nav-link">Services</a>
-        <a href="quote.html" class="nav-link active">Request Quote</a>
+        <a href="contact.html" class="nav-link">Request Quote</a>
         <a href="contact.html" class="nav-link">Contact</a>
-        <a href="quote.html" class="btn btn-primary btn-sm">Get Instant Quote</a>
+        <a href="contact.html" class="btn btn-primary btn-sm">Get Instant Quote</a>
       </nav>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
@@ -61,12 +61,6 @@
   <!-- Interactive Quote Section -->
   <section class="quote-section">
     <div class="container">
-
-      <!-- Success Message Alert Box (hidden by default) -->
-      <div id="quoteSuccessMessage" style="display: none; background: #ECFDF5; border: 1px solid #10B981; color: #065F46; padding: 1.5rem 2rem; border-radius: var(--radius-lg); margin-bottom: 2.5rem; font-weight: 500; box-shadow: var(--shadow-md);">
-        <h4 style="color: #065F46; margin-bottom: 0.5rem; font-size: 1.2rem;"><i class="fa-solid fa-circle-check"></i> Quote Request Submitted!</h4>
-        <p style="margin: 0; font-size: 0.95rem;">Thank you! Your facility request has been sent successfully. A Minnekhada consultant will review your specifications and contact you with a finalized proposal within 24 hours.</p>
-      </div>
 
       <!-- Step 1: Interactive Service Pre-Selection -->
       <div style="background: #FFFFFF; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border-color); padding: 2.5rem; margin-bottom: 2.5rem;">
@@ -126,66 +120,17 @@
             <strong style="color: var(--primary);"><i class="fa-solid fa-circle-check" style="color: var(--accent-hover);"></i> Selected Topics:</strong>
             <span id="selectedServicesList" style="font-weight: 700; color: var(--primary); margin-left: 0.5rem;">None selected (Click service cards above)</span>
           </div>
-          <a href="#quote-form-card" class="btn btn-primary btn-sm"><i class="fa-solid fa-arrow-down"></i> Continue to Quote Details</a>
+          <a href="contact.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-address-card"></i> View Contact Details</a>
         </div>
       </div>
 
-      <!-- Step 2: Main Interactive Quote Form Card -->
+      <!-- Step 2: Contact Details Direction -->
       <div id="quote-form-card" style="background: #FFFFFF; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid var(--border-color); padding: 2.5rem;">
         <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem; margin-bottom: 2rem;">
-          <span class="section-tag" style="font-size: 0.8rem;"><i class="fa-solid fa-calculator"></i> Step 2 of 2</span>
-          <h3 style="font-size: 1.65rem; color: var(--primary);"><i class="fa-solid fa-file-invoice-dollar" style="color: var(--accent);"></i> Confirm Property & Contact Details</h3>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">Provide details below to finalize your budget projection and schedule an inspection.</p>
+          <span class="section-tag" style="font-size: 0.8rem;"><i class="fa-solid fa-address-card"></i> Step 2 of 2</span>
+          <h3 style="font-size: 1.65rem; color: var(--primary);"><i class="fa-solid fa-phone-volume" style="color: var(--accent);"></i> Contact Our Team Directly</h3>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">We no longer use online quote forms. Please use our contact page for direct phone, email, and address details.</p>
         </div>
-
-        <form id="interactiveQuoteForm">
-          <!-- Hidden Input Updated by JS for Form Submission -->
-          <input type="hidden" id="selectedServicesInput" name="selected_services" value="">
-
-          <!-- Form Fields -->
-          <div class="form-row">
-            <div class="form-group">
-              <label for="quoteName" class="form-label">Contact Name</label>
-              <input type="text" id="quoteName" class="form-control" placeholder="John Doe" required>
-            </div>
-            <div class="form-group">
-              <label for="quoteEmail" class="form-label">Email Address</label>
-              <input type="email" id="quoteEmail" class="form-control" placeholder="john@example.com" required>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="quotePhone" class="form-label">Phone Number</label>
-              <input type="tel" id="quotePhone" class="form-control" placeholder="(604) 555-0199" required>
-            </div>
-            <div class="form-group">
-              <label for="quoteCompany" class="form-label">Company / Strata Name</label>
-              <input type="text" id="quoteCompany" class="form-control" placeholder="e.g. Strata LMS 1234 / ABC Properties">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="quotePropertyType" class="form-label">Property Type</label>
-              <select id="quotePropertyType" class="form-control" style="height: 52px;" required>
-                <option value="" disabled selected>Select property type...</option>
-                <option value="Commercial">Commercial / Retail</option>
-                <option value="Strata">Strata / Multi-Family</option>
-                <option value="Industrial">Industrial Facility</option>
-                <option value="Residential">Residential Single-Family</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="quotePropertySize" class="form-label">Estimated Property Size (sq. ft.)</label>
-              <input type="text" id="quotePropertySize" class="form-control" placeholder="e.g. 5,000 sq ft / 40 parking stalls">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="quoteMessage" class="form-label">Project Scope & Special Instructions</label>
-            <textarea id="quoteMessage" class="form-control" placeholder="Describe the service requirements, access times, or specific issues on-site..." required></textarea>
-          </div>
 
           <!-- Dynamic Estimate Calculator Badge -->
           <div style="background: var(--bg-light); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
@@ -198,10 +143,9 @@
             </div>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1.1rem; font-size: 1.05rem;">
-            <i class="fa-solid fa-paper-plane"></i> Submit Quote Request
-          </button>
-        </form>
+          <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 1.1rem; font-size: 1.05rem;">
+            <i class="fa-solid fa-address-book"></i> Go to Contact Details
+          </a>
       </div>
 
     </div>
@@ -228,7 +172,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
             <li><a href="services.html">All Services</a></li>
-            <li><a href="quote.html">Request Quote</a></li>
+            <li><a href="contact.html">Request Quote</a></li>
             <li><a href="contact.html">Contact Us</a></li>
           </ul>
         </div>
@@ -266,4 +210,3 @@
   <script src="js/main.js"></script>
 </body>
 </html>
-
