@@ -264,6 +264,8 @@ ul {
   cursor: pointer;
   transition: var(--transition);
   box-shadow: var(--shadow-sm);
+  text-align: center;
+  white-space: normal;
 }
 
 .btn-primary {
@@ -1291,10 +1293,33 @@ footer {
 
 /* Responsive */
 @media (max-width: 992px) {
+  .top-bar .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .top-info {
+    flex-wrap: wrap;
+    gap: 0.9rem 1.25rem;
+  }
+
+  .top-info-item {
+    overflow-wrap: anywhere;
+  }
+
   .hero-pegasus-title {
     font-size: 2.75rem;
   }
-  
+
+  .section-title {
+    font-size: 2.1rem;
+  }
+
+  .page-banner h1 {
+    font-size: 2.4rem;
+  }
+
   .mobile-toggle {
     display: block;
   }
@@ -1321,6 +1346,44 @@ footer {
     font-size: 1.25rem;
   }
 
+  .why-grid,
+  .service-detail-item,
+  .service-detail-item.reverse,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .service-detail-item {
+    margin-bottom: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .service-detail-image img {
+    height: 320px;
+  }
+
+  .service-detail-text h2 {
+    font-size: 1.95rem;
+  }
+
+  .cta-banner h2 {
+    font-size: 2.25rem;
+  }
+
+  .cta-banner p {
+    font-size: 1.05rem;
+  }
+
+  .cta-buttons {
+    flex-wrap: wrap;
+  }
+
+  .hero-pegasus-actions .btn {
+    width: 100%;
+    max-width: 360px;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1331,6 +1394,43 @@ footer {
 }
 
 @media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .top-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .top-info-item {
+    width: 100%;
+    font-size: 0.78rem;
+  }
+
+  .top-badge {
+    font-size: 0.72rem;
+  }
+
+  .nav-container {
+    height: 74px;
+  }
+
+  .brand-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .brand-title {
+    font-size: 1.05rem;
+  }
+
+  .brand-subtitle {
+    font-size: 0.68rem;
+  }
+
   .form-row, .feature-box-grid, .stats-grid, .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1341,6 +1441,154 @@ footer {
 
   .hero-pegasus-title {
     font-size: 2.25rem;
+  }
+
+  .hero-pegasus {
+    min-height: 560px;
+    padding: 4rem 0;
+  }
+
+  .hero-pegasus-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-pegasus-actions .btn {
+    max-width: 100%;
+    padding: 0.9rem 1.25rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  .section-title {
+    font-size: 1.75rem;
+  }
+
+  .page-banner {
+    padding: 3.5rem 0;
+  }
+
+  .page-banner h1 {
+    font-size: 2rem;
+  }
+
+  .breadcrumb {
+    flex-wrap: wrap;
+  }
+
+  .service-detail-text .service-num {
+    font-size: 2.7rem;
+  }
+
+  .service-detail-text h2 {
+    font-size: 1.6rem;
+  }
+
+  .service-detail-text p {
+    font-size: 0.98rem;
+  }
+
+  .service-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .service-detail-image img {
+    height: 250px;
+  }
+
+  .contact-info-card {
+    padding: 2rem;
+  }
+
+  .contact-info-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .info-item {
+    gap: 0.85rem;
+  }
+
+  .info-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .quote-step-card,
+  .quote-contact-card {
+    padding: 1.5rem !important;
+  }
+
+  .quote-step-title {
+    font-size: 1.45rem !important;
+  }
+
+  .quote-contact-title {
+    font-size: 1.35rem !important;
+  }
+
+  .quote-estimate-row {
+    padding: 1rem !important;
+  }
+
+  #estimatedCostDisplay {
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .services-selection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-group-title {
+    font-size: 1.6rem !important;
+  }
+
+  .about-services-list {
+    grid-template-columns: 1fr !important;
+  }
+
+  .about-value-title {
+    font-size: 1.75rem !important;
+  }
+
+  .about-highlight-card {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .contact-actions-card {
+    padding: 1.5rem !important;
+  }
+
+  .contact-actions-title {
+    font-size: 1.4rem !important;
+  }
+
+  .contact-map-card {
+    padding: 1.75rem !important;
+  }
+
+  .contact-map-icon {
+    font-size: 2.2rem !important;
+  }
+
+  .contact-map-title {
+    font-size: 1.5rem !important;
+  }
+
+  .contact-map-description {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    word-spacing: normal !important;
+  }
+
+  .cta-banner h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-banner p {
+    font-size: 0.98rem;
   }
 
   .hero-services-pills {
@@ -1493,4 +1741,3 @@ footer {
     margin-top: 1.5rem;
   }
 }
-
