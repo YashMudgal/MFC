@@ -77,18 +77,34 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateQuoteEstimate() {
     const selectedCards = document.querySelectorAll('.service-select-card.selected');
     const estimateBadge = document.getElementById('estimatedCostDisplay');
+    const selectedServicesList = document.getElementById('selectedServicesList');
+    const selectedServicesInput = document.getElementById('selectedServicesInput');
     if (!estimateBadge) return;
 
     let baseEstimate = 0;
+    const selectedServices = [];
     selectedCards.forEach((card) => {
       const price = parseInt(card.getAttribute('data-base-price') || '250', 10);
       baseEstimate += price;
+      selectedServices.push(card.getAttribute('data-service') || '');
     });
 
     if (baseEstimate === 0) {
       estimateBadge.textContent = '$0.00 (Select services above)';
+      if (selectedServicesList) {
+        selectedServicesList.textContent = 'None selected (Click service cards above)';
+      }
+      if (selectedServicesInput) {
+        selectedServicesInput.value = 'None selected';
+      }
     } else {
       estimateBadge.textContent = `$${baseEstimate} - $${Math.round(baseEstimate * 1.4)} (Estimated Range)`;
+      if (selectedServicesList) {
+        selectedServicesList.textContent = selectedServices.join(', ');
+      }
+      if (selectedServicesInput) {
+        selectedServicesInput.value = selectedServices.join(', ');
+      }
     }
   }
 
